@@ -9,7 +9,7 @@ export default function ContactView() {
         love to hear from you.
       </p>
       
-        href="mailto:hello@tinycreatures.example"
+        href="mailto:tassile000@gmail.com"
         className="mt-10 inline-block rounded-full bg-[#000000] px-8 py-3 text-sm text-white transition-transform duration-300 ease-out hover:scale-[1.03]"
       >
         tassile000@gmail.com
