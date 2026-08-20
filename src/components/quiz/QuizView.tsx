@@ -6,11 +6,12 @@ import ResultCard from "./ResultCard";
 
 interface QuizViewProps {
   onGoHome: () => void;
+  onViewLeaderboard: () => void;
 }
 
 const totalQuestions = biomes.reduce((acc, b) => acc + b.questions.length, 0);
 
-export default function QuizView({ onGoHome }: QuizViewProps) {
+export default function QuizView({ onGoHome, onViewLeaderboard }: QuizViewProps) {
   const [biomeIndex, setBiomeIndex] = useState(0);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
@@ -92,7 +93,13 @@ export default function QuizView({ onGoHome }: QuizViewProps) {
             <p className="mt-4 font-mono text-[10px] text-white/35">{biome.photoCredit}</p>
           </div>
         ) : (
-          <ResultCard score={score} total={totalQuestions} onRestart={handleRestart} onGoHome={onGoHome} />
+          <ResultCard
+            score={score}
+            total={totalQuestions}
+            onRestart={handleRestart}
+            onGoHome={onGoHome}
+            onViewLeaderboard={onViewLeaderboard}
+          />
         )}
       </div>
     </div>
