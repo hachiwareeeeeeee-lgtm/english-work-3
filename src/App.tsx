@@ -5,8 +5,9 @@ import VideoBackground from "./components/VideoBackground";
 import QuizView from "./components/quiz/QuizView";
 import AboutView from "./components/AboutView";
 import ContactView from "./components/ContactView";
+import LeaderboardView from "./components/leaderboard/LeaderboardView";
 
-type View = "landing" | "quiz" | "about" | "contact";
+type View = "landing" | "quiz" | "about" | "contact" | "leaderboard";
 
 export default function App() {
   const [view, setView] = useState<View>("landing");
@@ -35,18 +36,16 @@ export default function App() {
     <div className="relative min-h-screen w-full overflow-x-hidden bg-white">
       {view === "landing" && <VideoBackground />}
 
-      <Navbar
-        view={view}
-        onBeginJourney={beginJourney}
-        onGoHome={goHome}
-        onNavigate={navigate}
-      />
+      <Navbar view={view} onBeginJourney={beginJourney} onGoHome={goHome} onNavigate={navigate} />
 
       <div key={view} className="animate-fade-rise">
         {view === "landing" && <Hero onBeginJourney={beginJourney} />}
-        {view === "quiz" && <QuizView onGoHome={goHome} />}
+        {view === "quiz" && (
+          <QuizView onGoHome={goHome} onViewLeaderboard={() => navigate("leaderboard")} />
+        )}
         {view === "about" && <AboutView />}
         {view === "contact" && <ContactView />}
+        {view === "leaderboard" && <LeaderboardView />}
       </div>
     </div>
   );
