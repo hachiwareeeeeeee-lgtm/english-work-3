@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { collection, getDocs, orderBy, query, limit } from "firebase/firestore";
+import { get, limitToLast, orderByChild, query, ref } from "firebase/database";
 import { db } from "../../firebase";
 
 interface ScoreEntry {
@@ -17,18 +17,20 @@ export default function LeaderboardView() {
   useEffect(() => {
     async function load() {
       try {
-        const q = query(collection(db, "scores"), orderBy("score", "desc"), limit(20));
-        const snapshot = await getDocs(q);
-        const results: ScoreEntry[] = snapshot.docs.map((doc) => {
-          const data = doc.data();
-          return {
-            id: doc.id,
+        const scoresQuery = query(ref(db, "scores"), orderByChild("score"), limitToLast(20));
+        const snapshot = await get(scoresQuery);
+        const results: ScoreEntry[] = [];
+        snapshot.forEach((child) => {
+          const data = child.val();
+          results.push({
+            id: child.key ?? "",
             name: String(data.name ?? "Anonymous"),
             score: Number(data.score ?? 0),
             total: Number(data.total ?? 0),
             badge: String(data.badge ?? ""),
-          };
+          });
         });
+        results.reverse();
         setEntries(results);
         setStatus("ready");
       } catch (err) {
