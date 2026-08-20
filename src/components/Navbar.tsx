@@ -1,4 +1,4 @@
-type View = "landing" | "quiz" | "about" | "contact";
+type View = "landing" | "quiz" | "about" | "contact" | "leaderboard";
 
 interface NavbarProps {
   view: View;
@@ -11,6 +11,7 @@ const NAV_LINKS: { label: string; view: View }[] = [
   { label: "Home", view: "landing" },
   { label: "About", view: "about" },
   { label: "Reach Us", view: "contact" },
+  { label: "Leaderboard", view: "leaderboard" },
 ];
 
 export default function Navbar({ view, onBeginJourney, onGoHome, onNavigate }: NavbarProps) {
