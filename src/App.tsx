@@ -42,12 +42,15 @@ export default function App() {
         onNavigate={navigate}
       />
 
-      <div key={view} className="animate-fade-rise">
-        {view === "landing" && <Hero onBeginJourney={beginJourney} />}
-        {view === "quiz" && <QuizView onGoHome={goHome} />}
-        {view === "about" && <AboutView />}
-        {view === "contact" && <ContactView />}
-      </div>
+      {view === "quiz" ? (
+        <QuizView onGoHome={goHome} />
+      ) : (
+        <div key={view} className="animate-fade-rise">
+          {view === "landing" && <Hero onBeginJourney={beginJourney} />}
+          {view === "about" && <AboutView />}
+          {view === "contact" && <ContactView />}
+        </div>
+      )}
     </div>
   );
 }
