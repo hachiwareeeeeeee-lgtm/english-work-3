@@ -1,0 +1,85 @@
+import { useEffect, useState } from "react";
+import { collection, getDocs, orderBy, query, limit } from "firebase/firestore";
+import { db } from "../../firebase";
+
+interface ScoreEntry {
+  id: string;
+  name: string;
+  score: number;
+  total: number;
+  badge: string;
+}
+
+export default function LeaderboardView() {
+  const [entries, setEntries] = useState<ScoreEntry[]>([]);
+  const [status, setStatus] = useState<"loading" | "ready" | "error">("loading");
+
+  useEffect(() => {
+    async function load() {
+      try {
+        const q = query(collection(db, "scores"), orderBy("score", "desc"), limit(20));
+        const snapshot = await getDocs(q);
+        const results: ScoreEntry[] = snapshot.docs.map((doc) => {
+          const data = doc.data();
+          return {
+            id: doc.id,
+            name: String(data.name ?? "Anonymous"),
+            score: Number(data.score ?? 0),
+            total: Number(data.total ?? 0),
+            badge: String(data.badge ?? ""),
+          };
+        });
+        setEntries(results);
+        setStatus("ready");
+      } catch (err) {
+        console.error(err);
+        setStatus("error");
+      }
+    }
+    load();
+  }, []);
+
+  return (
+    <section className="relative z-10 mx-auto max-w-2xl px-8 py-24">
+      <h1 className="font-serif text-center text-5xl tracking-tight text-[#000000] sm:text-6xl">
+        Leaderboard
+      </h1>
+      <p className="mt-4 text-center text-lg text-[#6F6F6F]">
+        The top explorers of Tiny Creatures.
+      </p>
+
+      {status === "loading" && (
+        <p className="mt-10 text-center text-sm text-[#6F6F6F]">Loading scores...</p>
+      )}
+      {status === "error" && (
+        <p className="mt-10 text-center text-sm text-[#6F6F6F]">
+          Couldn&rsquo;t load the leaderboard right now.
+        </p>
+      )}
+      {status === "ready" && entries.length === 0 && (
+        <p className="mt-10 text-center text-sm text-[#6F6F6F]">
+          No scores yet — be the first to play!
+        </p>
+      )}
+
+      {status === "ready" && entries.length > 0 && (
+        <ol className="mt-10 flex flex-col gap-2">
+          {entries.map((entry, i) => (
+            <li
+              key={entry.id}
+              className="flex items-center justify-between rounded-2xl border border-black/10 px-5 py-3"
+            >
+              <span className="flex items-center gap-3">
+                <span className="w-6 font-mono text-sm text-[#6F6F6F]">{i + 1}</span>
+                <span className="text-sm text-[#000000]">{entry.name}</span>
+              </span>
+              <span className="font-mono text-sm text-[#6F6F6F]">
+                {entry.score}/{entry.total}
+              </span>
+            </li>
+          ))}
+        </ol>
+      )}
+    </section>
+  );
+}
