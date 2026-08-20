@@ -1,9 +1,10 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { getDatabase } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCZQGKoY9fQpsey6EsTEoXFrgimC_l6ArY",
   authDomain: "ingles-proyecto-6b087.firebaseapp.com",
+  databaseURL: "https://ingles-proyecto-6b087-default-rtdb.firebaseio.com",
   projectId: "ingles-proyecto-6b087",
   storageBucket: "ingles-proyecto-6b087.firebasestorage.app",
   messagingSenderId: "1041907197572",
@@ -11,4 +12,4 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
+export const db = getDatabase(app);
