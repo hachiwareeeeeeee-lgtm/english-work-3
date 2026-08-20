@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { push, ref, set, serverTimestamp } from "firebase/database";
 import { db } from "../../firebase";
 
 interface ResultCardProps {
@@ -36,7 +36,8 @@ export default function ResultCard({
 
     setStatus("saving");
     try {
-      await addDoc(collection(db, "scores"), {
+      const newEntryRef = push(ref(db, "scores"));
+      await set(newEntryRef, {
         name: trimmed.slice(0, 40),
         score,
         total,
