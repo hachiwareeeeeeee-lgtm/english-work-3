@@ -61,15 +61,12 @@ export default function QuizView({ onGoHome }: QuizViewProps) {
 
   return (
     <div className="relative min-h-[calc(100vh-88px)] w-full">
-      {/* Full-bleed biome photograph, desaturated to match the site's
-          black/white/gray language, re-mounted (via key) on every biome
-          change so the fade-rise animation replays as a soft crossfade. */}
       <div
         key={biome.id}
-        className="animate-fade-rise fixed inset-0 -z-10 bg-cover bg-center grayscale contrast-125"
+        className="animate-fade-rise absolute inset-0 -z-10 bg-cover bg-center grayscale contrast-125"
         style={{ backgroundImage: `url(${biome.photo})` }}
       />
-      <div className="fixed inset-0 -z-10 bg-gradient-to-b from-black/20 via-black/55 to-black" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/20 via-black/55 to-black" />
       <QuizProgress total={biomes.length} currentIndex={biomeIndex} completed={completed} />
       <div className="flex flex-col items-center px-6 pb-24 pt-2 text-center">
         {!finished ? (
