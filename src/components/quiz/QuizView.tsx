@@ -64,7 +64,7 @@ export default function QuizView({ onGoHome, onViewLeaderboard }: QuizViewProps)
     <div className="relative min-h-[calc(100vh-88px)] w-full">
       <div
         key={biome.id}
-        className="animate-fade-rise absolute inset-0 -z-10 bg-cover bg-center grayscale contrast-125"
+        className="animate-fade-rise absolute inset-0 -z-10 bg-cover bg-center"
         style={{ backgroundImage: `url(${biome.photo})` }}
       />
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/20 via-black/55 to-black" />
