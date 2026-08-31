@@ -25,10 +25,6 @@ export default function QuestionCard({
   const answered = selected !== null;
   const isCorrect = answered && selected === question.correctIndex;
 
-  // Shuffle the display order of the options once per question, so the
-  // correct answer isn't always sitting in the same spot. We shuffle
-  // *indices* (not the strings) so `selected`/`correctIndex` keep meaning
-  // the original option, unchanged everywhere else in the app.
   const displayOrder = useMemo(() => {
     const order = question.options.map((_, i) => i);
     for (let i = order.length - 1; i > 0; i--) {
@@ -44,6 +40,16 @@ export default function QuestionCard({
 
   return (
     <div className="animate-fade-rise mt-8 w-full max-w-xl rounded-3xl border border-white/15 bg-white/10 p-6 text-left backdrop-blur-md sm:p-8">
+      <div className="relative mb-5 h-40 w-full overflow-hidden rounded-2xl sm:h-48">
+        <img
+          src={question.image}
+          alt=""
+          className="h-full w-full object-cover"
+        />
+        <span className="absolute bottom-1.5 right-2.5 font-mono text-[9px] text-white/70 [text-shadow:0_1px_2px_rgba(0,0,0,0.8)]">
+          {question.imageCredit}
+        </span>
+      </div>
       <p className="font-mono text-xs tracking-widest text-white/50">
         QUESTION {questionNumber} OF {totalQuestions}
       </p>
