@@ -4,6 +4,8 @@ export interface Question {
   correctIndex: number;
   feedbackCorrect: string;
   feedbackIncorrect: string;
+  image: string;
+  imageCredit: string;
 }
 
 export interface Biome {
@@ -39,6 +41,9 @@ export const biomes: Biome[] = [
           "Correct! A leafcutter ant can carry up to 50 times its own body weight — imagine lifting a car with one hand.",
         feedbackIncorrect:
           "The right answer was 50 times its own body weight — imagine lifting a car with one hand.",
+        image:
+          "https://images.pexels.com/photos/32127912/pexels-photo-32127912.jpeg?auto=compress&cs=tinysrgb&w=800",
+        imageCredit: "Photo: Kirsten C Staring / Pexels",
       },
       {
         text: "Which body part do butterflies use to \u2018taste\u2019 their food?",
@@ -48,6 +53,9 @@ export const biomes: Biome[] = [
           "Exactly! Butterflies have taste receptors on their feet — the moment they land on a fruit, they already know if they like it.",
         feedbackIncorrect:
           "The right answer was their feet. Butterflies have taste receptors there, so they know if they like a fruit the moment they land on it.",
+        image:
+          "https://images.pexels.com/photos/1126792/pexels-photo-1126792.jpeg?auto=compress&cs=tinysrgb&w=800",
+        imageCredit: "Photo: Egor Kamelev / Pexels",
       },
     ],
   },
@@ -69,6 +77,9 @@ export const biomes: Biome[] = [
           "Correct! Coral is a colony made of thousands of tiny animals called polyps, all living together as one structure.",
         feedbackIncorrect:
           "The right answer was thousands of tiny animals. Coral is a colony of tiny animals called polyps.",
+        image:
+          "https://images.pexels.com/photos/4450803/pexels-photo-4450803.jpeg?auto=compress&cs=tinysrgb&w=800",
+        imageCredit: "Photo: Pexels",
       },
       {
         text: "How much of the oxygen we breathe is estimated to come from ocean plankton?",
@@ -78,6 +89,9 @@ export const biomes: Biome[] = [
           "That's right! Microscopic phytoplankton is estimated to produce more than half of the oxygen in the air we breathe.",
         feedbackIncorrect:
           "The right answer was more than half. Microscopic phytoplankton produces an enormous share of the planet's oxygen.",
+        image:
+          "https://images.pexels.com/photos/34902273/pexels-photo-34902273.jpeg?auto=compress&cs=tinysrgb&w=800",
+        imageCredit: "Photo: Ninety Seven Years / Pexels",
       },
     ],
   },
@@ -104,6 +118,9 @@ export const biomes: Biome[] = [
           "Nice! This beetle stands on its head on the dunes at dawn and lets fog droplets collect on its shell, then trickle down to its mouth.",
         feedbackIncorrect:
           "The right answer was that it collects fog on its own shell — standing on its head at dawn until the droplets trickle to its mouth.",
+        image:
+          "https://images.pexels.com/photos/1101214/pexels-photo-1101214.jpeg?auto=compress&cs=tinysrgb&w=800",
+        imageCredit: "Photo: Egor Kamelev / Pexels",
       },
       {
         text: "What's special about Saharan silver ants?",
@@ -118,6 +135,9 @@ export const biomes: Biome[] = [
           "Correct! They can sprint over 100 times their own body length per second to escape the scorching desert heat.",
         feedbackIncorrect:
           "The right answer was that they're among the fastest land animals for their size — they sprint to escape the scorching heat.",
+        image:
+          "https://images.pexels.com/photos/3588354/pexels-photo-3588354.jpeg?auto=compress&cs=tinysrgb&w=800",
+        imageCredit: "Photo: Jimmy Chan / Pexels",
       },
     ],
   },
@@ -144,6 +164,9 @@ export const biomes: Biome[] = [
           "Exactly! It's the famous 'waggle dance': moving in a figure eight, a bee shows the others the direction and distance to the flowers.",
         feedbackIncorrect:
           "The right answer was a kind of dance — the 'waggle dance,' which shows direction and distance to the flowers.",
+        image:
+          "https://images.pexels.com/photos/208034/pexels-photo-208034.jpeg?auto=compress&cs=tinysrgb&w=800",
+        imageCredit: "Photo: Anton Atanasov / Pexels",
       },
       {
         text: "How do crickets \u2018hear\u2019?",
@@ -158,6 +181,9 @@ export const biomes: Biome[] = [
           "That's right! Crickets have a hearing organ on their front legs, not on their head.",
         feedbackIncorrect:
           "The right answer was an organ on their front legs — crickets don't have ears on their head.",
+        image:
+          "https://images.pexels.com/photos/4716888/pexels-photo-4716888.jpeg?auto=compress&cs=tinysrgb&w=800",
+        imageCredit: "Photo: Skyler Ewing / Pexels",
       },
     ],
   },
@@ -179,6 +205,9 @@ export const biomes: Biome[] = [
           "Correct! Earthworms breathe through their skin, which is why it always needs to stay moist.",
         feedbackIncorrect:
           "The right answer was through its skin — that's why an earthworm's skin always needs to stay moist.",
+        image:
+          "https://images.pexels.com/photos/4386496/pexels-photo-4386496.jpeg?auto=compress&cs=tinysrgb&w=800",
+        imageCredit: "Photo: kaboompics.com / Pexels",
       },
       {
         text: "Despite the name, why does a centipede almost never have exactly 100 legs?",
@@ -193,6 +222,9 @@ export const biomes: Biome[] = [
           "That's right! Centipede species always have an odd number of leg pairs, so the count never lands on exactly 100 — they can have anywhere from 30 to over 300.",
         feedbackIncorrect:
           "The right answer was an odd number of leg pairs — that's why the total never lands on exactly 100.",
+        image:
+          "https://images.pexels.com/photos/42264/pexels-photo-42264.jpeg?auto=compress&cs=tinysrgb&w=800",
+        imageCredit: "Photo: Pixabay / Pexels",
       },
     ],
   },
