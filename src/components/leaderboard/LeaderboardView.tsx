@@ -10,6 +10,8 @@ interface ScoreEntry {
   badge: string;
 }
 
+const MEDALS = ["🥇", "🥈", "🥉"];
+
 export default function LeaderboardView() {
   const [entries, setEntries] = useState<ScoreEntry[]>([]);
   const [status, setStatus] = useState<"loading" | "ready" | "error">("loading");
@@ -42,10 +44,16 @@ export default function LeaderboardView() {
   }, []);
 
   return (
-    <section className="relative z-10 mx-auto max-w-2xl px-8 py-24">
+    <section className="relative z-10 mx-auto max-w-2xl overflow-hidden px-8 py-24">
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_15%_15%,rgba(0,0,0,0.05),transparent_40%),radial-gradient(circle_at_85%_80%,rgba(0,0,0,0.06),transparent_45%)]" />
+      <span className="pointer-events-none absolute left-[4%] top-[4%] select-none text-5xl opacity-[0.12] sm:text-6xl">🏆</span>
+      <span className="pointer-events-none absolute right-[6%] top-[10%] select-none text-4xl opacity-[0.12] sm:text-5xl">🐜</span>
+      <span className="pointer-events-none absolute bottom-[6%] left-[8%] select-none text-4xl opacity-[0.12] sm:text-5xl">🌱</span>
+
       <h1 className="font-serif text-center text-5xl tracking-tight text-[#000000] sm:text-6xl">
         Leaderboard
       </h1>
+      <div className="mx-auto mt-5 h-px w-16 bg-black/15" />
       <p className="mt-4 text-center text-lg text-[#6F6F6F]">
         The top explorers of Tiny Creatures.
       </p>
@@ -69,10 +77,14 @@ export default function LeaderboardView() {
           {entries.map((entry, i) => (
             <li
               key={entry.id}
-              className="flex items-center justify-between rounded-2xl border border-black/10 px-5 py-3"
+              className={`flex items-center justify-between rounded-2xl border px-5 py-3 ${
+                i < 3 ? "border-black/20 bg-black/[0.03]" : "border-black/10"
+              }`}
             >
               <span className="flex items-center gap-3">
-                <span className="w-6 font-mono text-sm text-[#6F6F6F]">{i + 1}</span>
+                <span className="w-7 text-sm text-[#6F6F6F]">
+                  {i < 3 ? MEDALS[i] : i + 1}
+                </span>
                 <span className="text-sm text-[#000000]">{entry.name}</span>
               </span>
               <span className="font-mono text-sm text-[#6F6F6F]">
