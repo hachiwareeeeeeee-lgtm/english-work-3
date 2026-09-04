@@ -5,8 +5,8 @@ const FADE_SECONDS = 0.5;
 /**
  * Drives a hand-rolled loop for a background video: fades in over the
  * first 0.5s, holds at full opacity, fades out over the last 0.5s, then
- * on `ended` drops to 0, waits 100ms, rewinds to frame zero and plays
- * again — so the loop point never reads as a hard cut.
+ * on `ended` rewinds to frame zero and plays again immediately — so the
+ * loop point never reads as a hard cut or a flash of blank background.
  *
  * The <video> element must NOT have the `loop` attribute: the manual
  * restart in `handleEnded` is what creates the loop, and the native
@@ -23,7 +23,6 @@ export function useVideoFadeLoop() {
 
     const tick = () => {
       const { currentTime, duration } = video;
-
       if (duration && !Number.isNaN(duration)) {
         if (currentTime < FADE_SECONDS) {
           setOpacity(currentTime / FADE_SECONDS);
@@ -33,18 +32,14 @@ export function useVideoFadeLoop() {
           setOpacity(1);
         }
       }
-
       frameRef.current = requestAnimationFrame(tick);
     };
 
     const handleEnded = () => {
-      setOpacity(0);
-      window.setTimeout(() => {
-        video.currentTime = 0;
-        video.play().catch(() => {
-          /* autoplay can be blocked until the user interacts once */
-        });
-      }, 100);
+      video.currentTime = 0;
+      video.play().catch(() => {
+        /* autoplay can be blocked until the user interacts once */
+      });
     };
 
     video.addEventListener("ended", handleEnded);
