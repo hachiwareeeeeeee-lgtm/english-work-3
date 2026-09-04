@@ -223,8 +223,8 @@ export const biomes: Biome[] = [
         feedbackIncorrect:
           "The right answer was an odd number of leg pairs — that's why the total never lands on exactly 100.",
         image:
-          "https://images.pexels.com/photos/42264/pexels-photo-42264.jpeg?auto=compress&cs=tinysrgb&w=800",
-        imageCredit: "Photo: Pixabay / Pexels",
+          "https://images.pexels.com/photos/3904047/pexels-photo-3904047.jpeg?auto=compress&cs=tinysrgb&w=800",
+        imageCredit: "Photo: Глеб Коровко / Pexels",
       },
     ],
   },
